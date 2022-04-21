@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "textedit": "apps/textedit",
+    "textedit-e2e": "apps/textedit-e2e"
+  }
+}

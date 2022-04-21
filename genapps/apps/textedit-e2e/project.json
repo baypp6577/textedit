@@ -1,0 +1,28 @@
+{
+  "root": "apps/textedit-e2e",
+  "sourceRoot": "apps/textedit-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/textedit-e2e/cypress.json",
+        "devServerTarget": "textedit:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "textedit:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/textedit-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["textedit"]
+}

@@ -1,0 +1,70 @@
+{
+  "root": "apps/textedit",
+  "sourceRoot": "apps/textedit/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/textedit",
+        "index": "apps/textedit/src/index.html",
+        "baseHref": "/",
+        "main": "apps/textedit/src/main.tsx",
+        "polyfills": "apps/textedit/src/polyfills.ts",
+        "tsConfig": "apps/textedit/tsconfig.app.json",
+        "assets": ["apps/textedit/src/favicon.ico", "apps/textedit/src/assets"],
+        "styles": ["apps/textedit/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/textedit/src/environments/environment.ts",
+              "with": "apps/textedit/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "textedit:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "textedit:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/textedit/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/textedit"],
+      "options": {
+        "jestConfig": "apps/textedit/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
